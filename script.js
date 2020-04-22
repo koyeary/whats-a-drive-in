@@ -2,6 +2,8 @@ var startBtn = document.querySelector("#startBtn");
 var timeEl = document.querySelector("#time");
 var timerInterval; 
 
+
+
 // this function initializes the timer
 function setTime(secondsLeft) {
   // The timer is set to count down the seconds uising secondsLeft--, and display the seconds remaining at each interval
@@ -15,6 +17,7 @@ function setTime(secondsLeft) {
       }
     // 1000 milliseconds equals 1 second, so our timer counts down by 1 second
   }, 1000);
+  startQuestions();
 }
 
 /* function onTimesUp() {
@@ -29,22 +32,56 @@ function startTime() {
   setTime(secondsLeft); 
   } 
 
- 
-startBtn.addEventListener("click", startQuestions);
+startBtn.addEventListener("click", startTime);
 
-var quizQAs = {
-  "What is a boolean function?" : "A function which returns 'true' or 'false'",
-  "What is an API" : "A library of stored methods"
-}
-console.log(Object.values(quizQAs));
-
-function startQuestions() {
-  startTime();
-  if (confirm(Object.values(quizQAs[0])) {
-    alert("correct!");
-  } else {
-    alert("false");
+var myQuestions = [
+  {
+    question: "Who invented JavaScript?",
+    answers: {
+      a: "Douglas Crockford",
+      b: "Sheryl Sandberg",
+      c: "Brendan Eich"
+    },
+    correctAnswer: "c"
+  },
+  {
+    question: "Which one of these is a JavaScript package manager?",
+    answers: {
+      a: "Node.js",
+      b: "TypeScript",
+      c: "npm"
+    },
+    correctAnswer: "c"
+  },
+  {
+    question: "Which tool can you use to ensure code quality?",
+    answers: {
+      a: "Angular",
+      b: "jQuery",
+      c: "RequireJS",
+      d: "ESLint"
+    },
+    correctAnswer: "d"
   }
+];
+console.log(Object.values(myQuestions));
+//look at how mulitple functions were triggered in previous assignment
+function startQuestions() {
+ if (confirm("answer this question") === true) {
+   console.log("true");
+   displayScore();
+ } else {
+   console.log("false");
+ }
+}
+
+//track, store, and display the score!
+var scoreCount = 0; 
+var score = document.querySelector("#score");
+
+function displayScore() {
+  scoreCount++;
+  score.textContent = scoreCount;
 }
 
 /*questions: Q: blah blah blah? [choices with checkbox and/or form] / A:
@@ -57,6 +94,7 @@ function startQuestions() {
 /*user score is set at zero to function incrementally*/
 
 /*a series of question-forms to be propogated at random from the array*/
+  //can be set up using a slide function
 
 /*user input is validated
     false inputs trigger timer penalty & penalty alert
