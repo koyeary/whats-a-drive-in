@@ -22,7 +22,7 @@ function setTime(secondsLeft) {
   timeEl.textContent = secondsLeft;
 } */
 
-function startQuiz() {
+function startTime() {
   // Eventually want to put 15 minutes here: 60 * 15
   // "+1" ensures countdown does not start at one second less than timer duration
   var secondsLeft = 10 + 1;  
@@ -30,9 +30,26 @@ function startQuiz() {
   } 
 
  
-startBtn.addEventListener("click", startQuiz);
+startBtn.addEventListener("click", startQuestions);
 
+var quizQAs = {
+  question1: "this is an answer",
+  question2: "this is another answer"
+}
+var answers = {
+  question1: "true",
+  question2: "false"
+}
+console.log(Object.values(quizQAs, answers));
 
+function startQuestions() {
+  startTime();
+  if (confirm("question 1:" + quizQAs[0])) {
+    console.log("correct!");
+  } else {
+    console.log("false")
+  };
+}
 
 /*questions: Q: blah blah blah? [choices with checkbox and/or form] / A:
 
