@@ -1,106 +1,36 @@
-/* var startBtn = document.querySelector("#startBtn");
-var setTimer = setInterval(duration, display) {
-  
-    minutes = parseInt(timer / 60, 10);
-    seconds = parseInt(timer % 60, 10);
-    var timer = duration, minutes, seconds;
-
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-
-    display.textContent = minutes + ":" + seconds;
-
-    if (--timer < 0) {
-        timer = duration;
-}, 1000); */
-
-
+var startBtn = document.querySelector("#startBtn");
 var timeEl = document.querySelector("#time");
-/* var mainEl = document.getElementById("main"); */
-
-
-// Initialize time
-// Eventually want to put 15 minutes here: 60 * 15
 var timerInterval; 
 
-// setTime() function
+// this function initializes the timer
 function setTime(secondsLeft) {
-  // This is the timer variable that we set to the function setInterval so that we can later clear it
-  // The function inside setInterval will count down the seconds uising secondsLeft--, change the textContent of the timeEl so that the user can see the seconds counting down.
+  // The timer is set to count down the seconds uising secondsLeft--, and display the seconds remaining at each interval
   timerInterval = setInterval(function() {
-    timeEl.textContent = secondsLeft;
     secondsLeft--;
-   /*  + " seconds left till colorsplosion." */;
-
-    // If secondsLeft is equal to 0, clearInterval(timerInterval);
-    if(secondsLeft === 0) {
-      clearInterval(timerInterval);
-      /* sendMessage(); */
-      timeEl.textContent = secondsLeft;
-    }
-
+    timeEl.textContent = secondsLeft;
+  //Time is up when timer reaches zero.  
+  if(secondsLeft === 0) {
+    clearInterval(timerInterval);
+    //eventually this will trigger alert(gameover) that displays score and opens leaderboard window
+      }
     // 1000 milliseconds equals 1 second, so our timer counts down by 1 second
   }, 1000);
 }
 
-/* function sendMessage() {
-  timeEl.textContent = " ";
-
-  var imgEl = document.createElement("img");
-
-  imgEl.setAttribute("src", "images/image_1.jpg");
-  mainEl.appendChild(imgEl);
-
+/* function onTimesUp() {
+  clearInterval(timerInterval);
+  timeEl.textContent = secondsLeft;
 } */
 
-// Start the timer
-/* setTime(); */
-
-/* function initializeTimer(duration, display) {
-  var timer = duration, minutes, seconds;
-
-  console.log(timer);
-
-}
- */
-
 function startQuiz() {
-  var secondsLeft = 10;  
-  setTime(secondsLeft);
-}
+  // Eventually want to put 15 minutes here: 60 * 15
+  // "+1" ensures countdown does not start at one second less than timer duration
+  var secondsLeft = 10 + 1;  
+  setTime(secondsLeft); 
+  } 
+
  
 startBtn.addEventListener("click", startQuiz);
-
-
-/* window.onload = function () {
-  var fifteenMinutes = 60 * 15,
-      display = document.querySelector('#time');
-};
- */
-/* function initializeTimer(duration, display) {
-  var timer = duration, minutes, seconds, milliseconds;
-  setInterval(function () {
-      minutes = parseInt(timer / 60, 10, 100, 1000);
-      seconds = parseInt(timer % 60, 10, 100, 1000);
-      milliseconds = parseInt(timer % 600, 100, 1000, 10000);
-
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
-      milliseconds = milliseconds < 10 ? "0" + milliseconds : milliseconds;
-      display.textContent = minutes + ":" + seconds + ":" + milliseconds;
-
-      if (--timer < 0) {
-          timer = duration;
-      }
-  }, 1000);
-}
-
-window.onload = function () {
-  var fifteenMinutes = 60 * 15,
-      display = document.querySelector('#time');
-  initializeTimer(fifteenMinutes, display);
-}; */
-/*quiz questions array*/
 
 
 
