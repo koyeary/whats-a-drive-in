@@ -1,41 +1,83 @@
-function startTimer(duration, display) {
-  var start = Date.now(),
-      diff,
-      minutes,
-      seconds;
-      
-  function timer() {
-      // get the number of seconds that have elapsed since 
-      // startTimer() was called
-      diff = duration - (((Date.now() - start) / 1000) | 0);
+/* var startBtn = document.querySelector("#startBtn");
+var setTimer = setInterval(duration, display) {
+  
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+    var timer = duration, minutes, seconds;
 
-      // does the same job as parseInt truncates the float
-      minutes = (diff / 60) | 0;
-      seconds = (diff % 60) | 0;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
 
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
+    display.textContent = minutes + ":" + seconds;
 
-      display.textContent = minutes + ":" + seconds; 
+    if (--timer < 0) {
+        timer = duration;
+}, 1000); */
 
-      if (diff <= 0) {
-          // add one second so that the count down starts at the full duration
-          // example 05:00 not 04:59
-          start = Date.now() + 1000;
-      }
-  };
-  // we don't want to wait a full second before the timer starts
-  timer();
-  setInterval(timer, 1000);
+
+var timeEl = document.querySelector("#time");
+/* var mainEl = document.getElementById("main"); */
+
+
+// Initialize time
+// Eventually want to put 15 minutes here: 60 * 15
+var timerInterval; 
+
+// setTime() function
+function setTime(secondsLeft) {
+  // This is the timer variable that we set to the function setInterval so that we can later clear it
+  // The function inside setInterval will count down the seconds uising secondsLeft--, change the textContent of the timeEl so that the user can see the seconds counting down.
+  timerInterval = setInterval(function() {
+    timeEl.textContent = secondsLeft;
+    secondsLeft--;
+   /*  + " seconds left till colorsplosion." */;
+
+    // If secondsLeft is equal to 0, clearInterval(timerInterval);
+    if(secondsLeft === 0) {
+      clearInterval(timerInterval);
+      /* sendMessage(); */
+      timeEl.textContent = secondsLeft;
+    }
+
+    // 1000 milliseconds equals 1 second, so our timer counts down by 1 second
+  }, 1000);
 }
 
-window.onload = function () {
+/* function sendMessage() {
+  timeEl.textContent = " ";
+
+  var imgEl = document.createElement("img");
+
+  imgEl.setAttribute("src", "images/image_1.jpg");
+  mainEl.appendChild(imgEl);
+
+} */
+
+// Start the timer
+/* setTime(); */
+
+/* function initializeTimer(duration, display) {
+  var timer = duration, minutes, seconds;
+
+  console.log(timer);
+
+}
+ */
+
+function startQuiz() {
+  var secondsLeft = 10;  
+  setTime(secondsLeft);
+}
+ 
+startBtn.addEventListener("click", startQuiz);
+
+
+/* window.onload = function () {
   var fifteenMinutes = 60 * 15,
       display = document.querySelector('#time');
-  startTimer(fifteenMinutes, display);
 };
-
-/* function startTimer(duration, display) {
+ */
+/* function initializeTimer(duration, display) {
   var timer = duration, minutes, seconds, milliseconds;
   setInterval(function () {
       minutes = parseInt(timer / 60, 10, 100, 1000);
@@ -56,7 +98,7 @@ window.onload = function () {
 window.onload = function () {
   var fifteenMinutes = 60 * 15,
       display = document.querySelector('#time');
-  startTimer(fifteenMinutes, display);
+  initializeTimer(fifteenMinutes, display);
 }; */
 /*quiz questions array*/
 
