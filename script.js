@@ -33,22 +33,18 @@ function startTime() {
 startBtn.addEventListener("click", startQuestions);
 
 var quizQAs = {
-  question1: "this is an answer",
-  question2: "this is another answer"
+  "What is a boolean function?" : "A function which returns 'true' or 'false'",
+  "What is an API" : "A library of stored methods"
 }
-var answers = {
-  question1: "true",
-  question2: "false"
-}
-console.log(Object.values(quizQAs, answers));
+console.log(Object.values(quizQAs));
 
 function startQuestions() {
   startTime();
-  if (confirm("question 1:" + quizQAs[0])) {
-    console.log("correct!");
+  if (confirm(Object.values(quizQAs[0])) {
+    alert("correct!");
   } else {
-    console.log("false")
-  };
+    alert("false");
+  }
 }
 
 /*questions: Q: blah blah blah? [choices with checkbox and/or form] / A:
