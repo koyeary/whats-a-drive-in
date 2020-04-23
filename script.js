@@ -14,8 +14,8 @@ var allIncorrect = (allOptions - score);
 
 //Here we store quiz questions as an array, options (in nested arrays), 
 //and answers (calling the corresponding option index).
-var myQuestions = [
-  {
+/* var myQuestions = 
+  {[
     question: "Who invented JavaScript?",
     options: [
       a: "Douglas Crockford",
@@ -42,8 +42,8 @@ var myQuestions = [
       d: "ESLint"
 ],
     answer: 2
-  }
-];
+  ]}
+]; */
 
 // this function initializes the timer
 function setTime(secondsLeft) {
@@ -107,28 +107,3 @@ function userScore() {
   scoreCount++;
   score.textContent = scoreCount;
 }
-
-
-/*questions: Q: blah blah blah? [choices with checkbox and/or form] / A:
-
-
-/*timer element & score element*/
-
-/*timer is set at ~[1 min per question]~ to function decrementally*/
-
-/*user score is set at zero to function incrementally*/
-
-/*a series of question-forms to be propogated at random from the array*/
-  //can be set up using a slide function
-
-/*user input is validated
-    false inputs trigger timer penalty & penalty alert
-    true inputs trigger scoring increment*/
-
-/*"0.00" time triggers game-over*/
-/*user score is captured*/
-/*user score is displayed and user is prompted for initials*/
-/*score and identity are displayed stored persistantly (cross-browser/user-agent)*/
-/* a new window is loaded, navigating to a leaderboard*/
-/*leaderboard updates as new input is generated*/
-
