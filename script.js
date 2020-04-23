@@ -1,29 +1,79 @@
 var startBtn = document.querySelector("#startBtn");
 var timeEl = document.querySelector("#time");
-var timerInterval; 
+ 
 
+var quizContainer = document.querySelector("#quiz");
+var resultsContainer = document.getElementById("#results");
+var answerQuestion = document.getElementById("#answerQuestion");
 
+var timerInterval;
+//we will need a function that counts the number of total options
+var allOptions; 
+var allIncorrect = (allOptions - score);
+//an on-click function @ gameOver modal that takes us to the leaderboard
+
+//Here we store quiz questions as an array, options (in nested arrays), 
+//and answers (calling the corresponding option index).
+var myQuestions = [
+  {
+    question: "Who invented JavaScript?",
+    options: [
+      a: "Douglas Crockford",
+      b: "Sheryl Sandberg",
+      c: "Brendan Eich"
+    ],
+    answer: 2
+  },
+  {
+    question: "Which one of these is a JavaScript package manager?",
+    options: [
+      a: "Node.js",
+      b: "TypeScript",
+      c: "npm"
+    ],
+    answer: 2
+  },
+  {
+    question: "Which tool can you use to ensure code quality?",
+    options: [
+      a: "Angular",
+      b: "jQuery",
+      c: "RequireJS",
+      d: "ESLint"
+],
+    answer: 2
+  }
+];
 
 // this function initializes the timer
 function setTime(secondsLeft) {
-  // The timer is set to count down the seconds uising secondsLeft--, and display the seconds remaining at each interval
+  // The timer is set to count down the seconds uising secondsLeft--, 
+  //and display the seconds remaining at each interval
   timerInterval = setInterval(function() {
     secondsLeft--;
     timeEl.textContent = secondsLeft;
-  //Time is up when timer reaches zero.  
-  if(secondsLeft === 0) {
-    clearInterval(timerInterval);
-    //eventually this will trigger alert(gameover) that displays score and opens leaderboard window
-      }
+    //Time is up when timer reaches zero.  
+    if (secondsLeft === 0) {
+      clearInterval(timerInterval);
+      gameOver();        }
+    //if user options a question incorrectly, 30 seconds is taken off the clock.
+  if (wrongAnswer === true) {
+      secondsLeft - 30;
+    }
     // 1000 milliseconds equals 1 second, so our timer counts down by 1 second
   }, 1000);
   startQuestions();
 }
 
-/* function onTimesUp() {
-  clearInterval(timerInterval);
-  timeEl.textContent = secondsLeft;
-} */
+
+
+function gameOver() {
+  if (secondsLeft === 0 || alloptions === 10) {
+    //this will be a modal
+    alert("game over! You got " + allIncorrect , " options wrong." );
+    
+  }
+}
 
 function startTime() {
   // Eventually want to put 15 minutes here: 60 * 15
@@ -34,44 +84,17 @@ function startTime() {
 
 startBtn.addEventListener("click", startTime);
 
-var myQuestions = [
-  {
-    question: "Who invented JavaScript?",
-    answers: {
-      a: "Douglas Crockford",
-      b: "Sheryl Sandberg",
-      c: "Brendan Eich"
-    },
-    correctAnswer: "c"
-  },
-  {
-    question: "Which one of these is a JavaScript package manager?",
-    answers: {
-      a: "Node.js",
-      b: "TypeScript",
-      c: "npm"
-    },
-    correctAnswer: "c"
-  },
-  {
-    question: "Which tool can you use to ensure code quality?",
-    answers: {
-      a: "Angular",
-      b: "jQuery",
-      c: "RequireJS",
-      d: "ESLint"
-    },
-    correctAnswer: "d"
-  }
-];
+
+
 console.log(Object.values(myQuestions));
 //look at how mulitple functions were triggered in previous assignment
 function startQuestions() {
  if (confirm("answer this question") === true) {
    console.log("true");
-   displayScore();
+   userScore();
  } else {
    console.log("false");
+   userPenalty();
  }
 }
 
@@ -79,10 +102,12 @@ function startQuestions() {
 var scoreCount = 0; 
 var score = document.querySelector("#score");
 
-function displayScore() {
+
+function userScore() {
   scoreCount++;
   score.textContent = scoreCount;
 }
+
 
 /*questions: Q: blah blah blah? [choices with checkbox and/or form] / A:
 
