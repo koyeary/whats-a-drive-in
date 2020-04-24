@@ -55,25 +55,25 @@ function setTime(secondsLeft) {
     //Time is up when timer reaches zero.  
     if (secondsLeft === 0) {
       clearInterval(timerInterval);
-      gameOver();        }
+      /* gameOver();   */      }
     //if user options a question incorrectly, 30 seconds is taken off the clock.
-  if (wrongAnswer === true) {
+  /* if (wrongAnswer === true) {
       secondsLeft - 30;
-    }
+    } */
     // 1000 milliseconds equals 1 second, so our timer counts down by 1 second
   }, 1000);
   startQuestions();
 }
 
 
-
+/* 
 function gameOver() {
   if (secondsLeft === 0 || alloptions === 10) {
     //this will be a modal
     alert("game over! You got " + allIncorrect , " options wrong." );
     
   }
-}
+} */
 
 function startTime() {
   // Eventually want to put 15 minutes here: 60 * 15
@@ -86,8 +86,9 @@ startBtn.addEventListener("click", startTime);
 
 
 
-console.log(Object.values(myQuestions));
+/* console.log(Object.values(myQuestions)); */
 //look at how mulitple functions were triggered in previous assignment
+//first a modal pops up to start the quiz
 function startQuestions() {
  if (confirm("answer this question") === true) {
    console.log("true");
@@ -96,6 +97,7 @@ function startQuestions() {
    console.log("false");
    userPenalty();
  }
+  /* console.log(secondsLeft); */
 }
 
 //track, store, and display the score!
@@ -107,3 +109,32 @@ function userScore() {
   scoreCount++;
   score.textContent = scoreCount;
 }
+
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+//append questions to modal
+
+/* // When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+} */
