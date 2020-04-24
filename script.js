@@ -12,21 +12,50 @@ var allOptions;
 var allIncorrect = (allOptions - score);
 //an on-click function @ gameOver modal that takes us to the leaderboard
 
-//Here we store quiz questions as an array, options (in nested arrays), 
-//and answers (calling the corresponding option index).
-/* var myQuestions = 
-  {[
-    question: "Who invented JavaScript?",
-    options: [
-      a: "Douglas Crockford",
-      b: "Sheryl Sandberg",
-      c: "Brendan Eich"
-    ],
-    answer: 2
+var questions = [
+  {
+    prompt: "Who is the Queen of England?\na: Elizabeth\nb:Kody Ko\nc: Martha Kelly",
+    answer: "a"
   },
- ...
-  ]}
-]; */
+  {
+    prompt: "who is Lauren Rantala?\na: my wife\nb: my fiance\nd: the prime minister of finland",
+    answer: "a"
+  }
+]
+
+function questionPrompts() {
+  
+}
+
+
+var response;
+function startQuestions() {
+  for (var i = 0; i < questions.length; i++) {
+    vex.dialog.prompt({
+      message: questions[i],
+      placeholder: 'Enter a, b, or c',
+      callback: function () {
+        checkAnswers(response);
+      }
+      });
+  }
+}    
+        
+function checkAnswers() {
+  if(response == questions.answer) {
+    userScore();
+      alert("you got it right");
+    } else {
+      alert("you got it wrong");
+      // secondsLeft--;
+    } if (secondsLeft === 0){
+      return alert("game over");
+    }
+  }    
+/* alert("you scored " + scoreCount);
+prompt("Enter your initials and head to the leaderboard!");  
+} */
+
 
 // this function initializes the timer
 function setTime(secondsLeft) {
@@ -38,51 +67,56 @@ function setTime(secondsLeft) {
     console.log(secondsLeft);
     //Time is up when timer reaches zero.  
     if (secondsLeft === 0) {
-      clearInterval(timerInterval);
-      /* gameOver();   */      }
-    //if user options a question incorrectly, 30 seconds is taken off the clock.
-  /* if (wrongAnswer === true) {
-      secondsLeft - 30;
-    } */
+      clearInterval(timerInterval); }
     // 1000 milliseconds equals 1 second, so our timer counts down by 1 second
   }, 1000);
   hitStart();
 }
 
-
+var secondsLeft = 100 + 1;  
 function startTime() {
   // Eventually want to put 15 minutes here: 60 * 15
   // "+1" ensures countdown does not start at one second less than timer duration
-  var secondsLeft = 10 + 1;  
+  //var secondsLeft = 10 + 1;  
   setTime(secondsLeft); 
   } 
 
 function hitStart() {
   console.log("start!");
+  setTimeout(() => {startQuestions(); }, 1000);
 }
 
-function startQuestions() {
-  vex.dialog.prompt({
-    message: 'What planet did the aliens come from?',
-    placeholder: 'Planet name',
+/* function startQuestions() {
+  vex.dialog.confirm({
+    message: 'Are you absolutely sure you want to destroy the alien planet?',
     callback: function (value) {
-        console.log(value);
+        console.log(value)
     }
 })
-}
+} */
+
 
 startBtn.addEventListener("click", startTime);
 
 
 
-/* 
+/* function checkAnswer(answer) {
+  if (questions[questionIndex].correct == answer) {
+    scoreCount++;
+    rightAnswer();
+  }else{
+    wrongAnswer();
+  }
+}
+ */
+
+
 //track, store, and display the score!
 var scoreCount = 0; 
 var score = document.querySelector("#score");
- */
 
-/* function userScore() {
+
+function userScore() {
   scoreCount++;
   score.textContent = scoreCount;
 }
- */

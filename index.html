@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="vex.css" />
+    <link rel="stylesheet" href="vex-theme-os.css" />
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css" />
 
@@ -12,18 +13,31 @@
 </head>
 
 <body>
-    <!-- <header>
-        <h1>Coding Quiz</h1>
-    </header> -->
+
     <body>
-        <div class="hero">
-                <h1>Coding Quiz</h1>
-             <!--Start Button opens quiz carousel-->
-             <!--Leaderboard Button opens leaderboard-->
-        </div>
 
-    </div>
-
+        <div class="big-box">
+            <h1>
+                Coding Quiz
+            </h1>  
+        </div>      
+        <div class="container">
+            <div class="textbox" id="time">10</div>
+            
+            <div class="textbox" id="score">0</div>
+             
+        </div>       
+            <div class="container">
+                <button id="startBtn">START</button>
+                
+                <button id="leaderboard">LEADERBOARD</button> 
+            </div>       
+           
+          
+          
+       
+    <script src="vex.combined.min.js"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-os'</script>
     <script src="./script.js"></script>
 </body>
 
