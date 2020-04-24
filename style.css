@@ -1,48 +1,50 @@
 body, html {
   height: 100%;
-  text-align: center;
   font-family: 'Roboto', sans-serif;
 }
 
-.hero {
+.big-box {
   /*Sizing*/
   width: 100vw;
   height: 100vh;
 
   /*Positioning*/
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color:  #8fa686;
+  background-color:   #f7f3ed;;
 }
 
-.textbox {
-  width: 30vw;
-}
-
-.hero h1 {
+.big-box h1 {
   font-family: 'Comfortaa', cursive;
 }
 
-.container {
-  justify-content: center;
-  align-items: center;
-}
-
 button {
-  text-align: center;
   padding: 10px;
   border-radius: 20%;
   background-color: rgba(143, 166, 134, .5);
 /*   opacity: 50%; */
-  color: #f7f3ed;
 }
 
 button:hover {
   background-color:  #8fa686;
   opacity: 100%;
   color: #f7f3ed;
+}
+
+.textbox {
+  padding: 10px;
+  font-style: 'Comfortaa', cursive;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  padding: 30px;
+  background-color:  #f7f3ed;
 }
 
 
