@@ -50,6 +50,9 @@ button:hover {
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+/* Modal Body */
+.modal-body {padding: 2px 16px;}
+
 /* Modal Content */
 .modal-content {
   background-color: #fefefe;
@@ -63,7 +66,7 @@ button:hover {
 /* The Close Button */
 .close {
   color: #aaaaaa;
-  flex: right;
+  float: right;
   font-size: 28px;
   font-weight: bold;
 }
