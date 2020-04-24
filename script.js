@@ -82,7 +82,7 @@ function startTime() {
   setTime(secondsLeft); 
   } 
 
-/* startBtn.addEventListener("click", startTime); */
+startBtn.addEventListener("click", startTime);
 
 
 
@@ -124,8 +124,3 @@ function myMove() {
     }
   }
 }
-
-window.addEventListener('load', 
-  function() { 
-    alert('hello!');
-  }, false);
