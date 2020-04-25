@@ -1,6 +1,7 @@
 var startBtn = document.querySelector("#startBtn");
 var timeEl = document.querySelector("#time");
- 
+var scoreEl = document.querySelector("#score") 
+var score = 0;
 
 var quizContainer = document.querySelector("#quiz");
 var resultsContainer = document.getElementById("#results");
@@ -14,47 +15,50 @@ var allIncorrect = (allOptions - score);
 
 var questions = [
   {
-    prompt: "Who is the Queen of England?\na: Elizabeth\nb:Kody Ko\nc: Martha Kelly",
+    q: "Who is the Queen of England?\ a: Elizabeth\ b:Kody Ko\ c: Martha Kelly",
     answer: "a"
   },
   {
-    prompt: "who is Lauren Rantala?\na: my wife\nb: my fiance\nd: the prime minister of finland",
+    q: "who is Lauren Rantala?\na: my wife\nb: my fiance\nd: the prime minister of finland",
     answer: "a"
   }
 ]
 
-function questionPrompts() {
   
-}
-
-
-var response;
+  
 function startQuestions() {
   for (var i = 0; i < questions.length; i++) {
+    var modalQuestion = questions[i].q;
+    var computerAnswer = questions[i].answer;
     vex.dialog.prompt({
-      message: questions[i],
+      message: modalQuestion,
       placeholder: 'Enter a, b, or c',
-      callback: function () {
-        checkAnswers(response);
-      }
-      });
-  }
-}    
-        
-function checkAnswers() {
-  if(response == questions.answer) {
-    userScore();
-      alert("you got it right");
+      callback: function (value){
+       
+      if (value === computerAnswer){
+      vex.dialog.alert("You were right! Score +1");
+      userScore();
     } else {
-      alert("you got it wrong");
-      // secondsLeft--;
-    } if (secondsLeft === 0){
-      return alert("game over");
+      vex.dialog.alert("You were wrong! 30 seconds off the clock!");
+      secondsLeft-30;
+      console.log(secondsLeft);
+      timeEl.textContent = secondsLeft;
     }
-  }    
-/* alert("you scored " + scoreCount);
-prompt("Enter your initials and head to the leaderboard!");  
-} */
+        /*
+        if(value === questions.answer) {
+          alert("you got it right");
+        } else {
+          alert("you got it wrong");
+    }    }*/
+  }
+   });
+  }  
+} 
+
+function userScore() {
+  score++;
+  scoreEl.textContent = score;
+}
 
 
 // this function initializes the timer
@@ -81,42 +85,14 @@ function startTime() {
   setTime(secondsLeft); 
   } 
 
+/*Starts the countdown with a 1 second delay for the quiz to begin,
+so the time element starts to update without being delayed by the first modal*/
 function hitStart() {
   console.log("start!");
   setTimeout(() => {startQuestions(); }, 1000);
 }
 
-/* function startQuestions() {
-  vex.dialog.confirm({
-    message: 'Are you absolutely sure you want to destroy the alien planet?',
-    callback: function (value) {
-        console.log(value)
-    }
-})
-} */
-
-
 startBtn.addEventListener("click", startTime);
 
 
 
-/* function checkAnswer(answer) {
-  if (questions[questionIndex].correct == answer) {
-    scoreCount++;
-    rightAnswer();
-  }else{
-    wrongAnswer();
-  }
-}
- */
-
-
-//track, store, and display the score!
-var scoreCount = 0; 
-var score = document.querySelector("#score");
-
-
-function userScore() {
-  scoreCount++;
-  score.textContent = scoreCount;
-}
