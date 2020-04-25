@@ -34,13 +34,14 @@ function startQuestions() {
           vex.dialog.alert("You were right! Score +1");
           userScore();
         } else if (value != computerAnswer) {
-          vex.dialog.alert("You were wrong! 30 seconds off the clock!");
+          vex.dialog.alert("You were wrong! 15 seconds off the clock!");
            console.log("penalty");
            userPenalty();
         }
       }
     });
   }
+/*   endGame(); */
 }
 
 //need a variable that stores the new number of seconds
@@ -50,16 +51,21 @@ function startQuestions() {
 function setTime() {
   // The timer is set to count down the seconds using secondsLeft--, 
   //and display the seconds remaining at each interval
-  timerInterval = setInterval(function() {
+  timerInterval = setInterval(function () {
     secondsLeft -= 1;
     timeEl.textContent = secondsLeft;
     console.log(secondsLeft);
     //Time is up when timer reaches zero. 
-    if (secondsLeft === 0) {
-      clearInterval(timerInterval); }
+    if (secondsLeft < 1) {
+      /*  endGame();} */
+      vex.dialog.alert("Game Over!")
+      timeEl.textContent = 0;
+      clearInterval(timerInterval);
+    }
     // 1000 milliseconds equals 1 second, so our timer counts down by 1 second
-  }, 1000);
-  }  
+  },
+    1000);
+}  
 
 
 function startTime() { 
@@ -83,7 +89,16 @@ function userPenalty() {
   secondsLeft -= 15;
 }
  
-
+function endGame() {
+  clearInterval(timerInterval);
+  vex.dialog.prompt({
+    message: "You scored" + score,
+    placeholder: "Enter your initials and go to the leaderboard!",
+    callback: function (value) {
+      timeEl.textContent = 0;
+    }
+  })
+}
 
 /*Starts the countdown with a 1 second delay for the quiz to begin,
 so the time element starts to update without being delayed by the first modal*/
